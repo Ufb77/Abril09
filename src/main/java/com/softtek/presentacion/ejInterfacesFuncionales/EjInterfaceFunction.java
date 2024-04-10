@@ -12,6 +12,7 @@ public class EjInterfaceFunction {
 
         listaDevuelvePares();
         calculoEstadisticas();
+        validacionPass();
 
     }
 
@@ -83,12 +84,18 @@ public class EjInterfaceFunction {
      * verificar la contraseña completa.
      */
     public static void validacionPass(){
-        String cadena;
+        String cadena = "hW345+";
 
         boolean passValida = false;
         Function<String, Boolean> numCaracteres = x-> x.length()>= 8;
-        Function<String, Boolean> restoComprobacion = x ->x.matches("");
+        Function<String, Boolean> restoComprobacion = x ->x.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?!.*\\s).*$");
 
+        if(numCaracteres.apply(cadena) && restoComprobacion.apply(cadena)){
+            passValida = true;
+
+        }
+
+        System.out.println(passValida);
 
 
     }
